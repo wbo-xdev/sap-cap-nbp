@@ -1,0 +1,164 @@
+{
+  "_version": "1.76.0",
+  "sap.app": {
+    "id": "project1",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.19.5",
+      "toolsId": "dbed71e5-1883-44c1-b930-93399c3190a4"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/zc-ext-bogdant1-v2/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.142.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "project1.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "ZC_EXT_BOGDANT1_HList",
+          "target": "ZC_EXT_BOGDANT1_HList"
+        },
+        {
+          "pattern": "ZC_EXT_BOGDANT1_H({key}):?query:",
+          "name": "ZC_EXT_BOGDANT1_HObjectPage",
+          "target": "ZC_EXT_BOGDANT1_HObjectPage"
+        },
+        {
+          "pattern": "ZC_EXT_BOGDANT1_H({key})/to_items({key2}):?query:",
+          "name": "ZC_EXT_BOGDANT1_PObjectPage",
+          "target": "ZC_EXT_BOGDANT1_PObjectPage"
+        }
+      ],
+      "targets": {
+        "ZC_EXT_BOGDANT1_HList": {
+          "type": "Component",
+          "id": "ZC_EXT_BOGDANT1_HList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/ZC_EXT_BOGDANT1_H",
+              "variantManagement": "Page",
+              "navigation": {
+                "ZC_EXT_BOGDANT1_H": {
+                  "detail": {
+                    "route": "ZC_EXT_BOGDANT1_HObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "GridTable"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "ZC_EXT_BOGDANT1_HObjectPage": {
+          "type": "Component",
+          "id": "ZC_EXT_BOGDANT1_HObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/ZC_EXT_BOGDANT1_H",
+              "navigation": {
+                "to_items": {
+                  "detail": {
+                    "route": "ZC_EXT_BOGDANT1_PObjectPage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "ZC_EXT_BOGDANT1_PObjectPage": {
+          "type": "Component",
+          "id": "ZC_EXT_BOGDANT1_PObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/ZC_EXT_BOGDANT1_H/to_items"
+            }
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  }
+}

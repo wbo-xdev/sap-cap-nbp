@@ -1,0 +1,58 @@
+{
+  "name": "ZWBoCAP02",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "dependencies": {
+    "@sap-cloud-sdk/connectivity": "^4.1.2",
+    "@sap-cloud-sdk/core": "",
+    "@sap-cloud-sdk/http-client": "^4",
+    "@sap-cloud-sdk/odata-v2": "",
+    "@sap-cloud-sdk/resilience": "^4",
+    "@sap/cds": "^9",
+    "express": "^4",
+    "@sap/xssec": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^2",
+    "@sap/dev-cap-tools": "^1.31.0",
+    "cds-plugin-ui5": "^0.13.0"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-project1": "cds watch --open project1/index.html?sap-ui-xx-viewCache=false --livereload false"
+  },
+  "private": true,
+  "cds": {
+    "requires": {
+      "ds1110_XX": {
+        "kind": "odata-v2",
+        "model": "srv/external/ds1110_XX",
+        "credentials": {
+          "destination": "ds1110_XX",
+          "path": "/sap/opu/odata/sap"
+        }
+      },
+      "ZC_EXT_BOGDANT1_V2": {
+        "kind": "odata-v2",
+        "model": "srv/external/ZC_EXT_BOGDANT1_V2",
+        "[production]": {
+          "credentials": {
+            "destination": "ds1110",
+            "path": "/sap/opu/odata/sap/ZC_EXT_BOGDANT1_V2"
+          }
+        },
+        "csrf": true,
+        "csrfInBatch": true
+      },
+      "[production]": {
+        "auth": "xsuaa"
+      }
+    }
+  },
+  "workspaces": [
+    "app/*"
+  ],
+  "sapux": [
+    "app/project1"
+  ]
+}
