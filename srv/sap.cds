@@ -1,9 +1,9 @@
 using { sap } from '@sap/cds/common';
 using { ZC_EXT_BOGDANT1_V2 } from './external/ZC_EXT_BOGDANT1_V2';
 
-service BapiService {
+service NBPRates {
     @readonly
-    entity MaterialData as projection on Materials;
+    entity RatesData as projection on Rates;
 }
 
 service Test01 {
@@ -11,7 +11,7 @@ service Test01 {
     entity ZC_EXT_BOGDANT1_H as projection on ZC_EXT_BOGDANT1_V2.ZC_EXT_BOGDANT1_H;
 }
 
-entity Materials {
+entity Rates {
     @Common.Label : 'Waluta'
     @UI.OrderBy: 1
     key currency   : String;
