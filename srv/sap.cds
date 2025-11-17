@@ -1,4 +1,4 @@
-using { sap } from '@sap/cds/common';
+//using { sap } from '@sap/cds/common';
 using { ZC_EXT_BOGDANT1_V2 } from './external/ZC_EXT_BOGDANT1_V2';
 
 service NBPRates {
